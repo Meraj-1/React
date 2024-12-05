@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { CiSearch } from "react-icons/ci";
 import RestaurantList from "../utils/mockdata";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
     const [searchText, setSearchText] = useState("");
@@ -20,7 +21,10 @@ const Body = () => {
         setFilteredRestaurants(updatedList);
     }, [searchText]);
 
-    return (
+
+    return RestaurantList.length === 0 ? (
+        <Shimmer/>
+    ) : (
         <div className="body">
             <div className="search-box">
                 <input
